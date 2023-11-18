@@ -1,6 +1,6 @@
 # Life of Mine Optimizer
 
-LOMOPTIM (Life of Mine Optimizer): An Implementation of Lerchs-Grossman Algorithm for Open Pit Mines with Sub-Optimal Conditions
+[LOMOPTIM](https://github.com/basilrabi/lomoptim-qt) (Life of Mine Optimizer): An Implementation of Lerchs-Grossman Algorithm for Open Pit Mines with Sub-Optimal Conditions
 
 ## Objectives
 
