@@ -128,33 +128,48 @@ November 2023
 
 \subsection{Mineral Reserves and Optimized Strategic Plans for Surface Mines}
 
-In surface minining, the maximum area for extraction of ore at any one time shall be dependent on the scall of the mining operation.
-For projects that have a processing plant or those with long term supply agreement with domestic processing plant, the maximum disturbed area for extraction shall not exceed to one hundred sixty-two (162) hectares or two (2) meridional block. (DAO 2018-19)
-Mine planning software that are utiized in scoping, feasibility, life-of-mine scheduling and in the ongoing re-evaluation of mine plans through production phase.
+Mine planning software that are utilized in scoping, feasibility, life-of-mine scheduling and in the ongoing re-evaluation of mine plans through production phase.
 Accurate evaluation of financial viability of the mineral deposit and development, then determination of the optimal long term strategic mine plan and schedule to extract the full value of that deposit over the life of the mine. 
-However, the Algorithm that analysis the conditions for scheduling includes strategic scheduling, detailed cost, price and recovery modelling, multiple scenario analysis, blending, cut-off and simultaneous stockpile optimization and failed to consider the open area for extraction of ore as mandate by existing guidelines. 
+However, the Algorithm that analysis the conditions for scheduling includes strategic scheduling, detailed cost, price and recovery modeling, multiple scenario analysis, blending, cut-off and simultaneous stockpile optimization and failed to consider the open area for extraction of ore as mandate by existing guidelines. 
 Thus, full potential of mine project is not fully attained.
-Simultaneous mine production and mine rehabilitation is the major focus on the developement of this algorithm for attainment of the optimum life-of-mine.
+Simultaneous mine production and mine rehabilitation is the major focus on the development of this algorithm for attainment of the optimum life-of-mine.
 
 \subsubsection{Optimized Economics}
-Economic optimization enatails striving to acquire the best from economy in terms of profits, production, and utility.
-In entails maximinzing the objective functions which contribute towards the best economic outcome.
+Economic optimization entails striving to acquire the best from economy in terms of profits, production, and utility.
+In entails maximizing the objective functions which contribute towards the best economic outcome.
 
 
 \subsubsection{Good Governance and Environmental Compliance}
-Environmental resources is essential in economic advancement and the improvement of society's quality of life, and strong environmental governance in important in acheiving goals in sustainable way. 
+
+Environmental resources is essential in economic advancement and the improvement of society's quality of life, and strong environmental governance in important in achieving goals in sustainable way. 
 Mining assumes governance as key to the environment and, as a consequence, to the business.
-Simultaneous mining activity and enviromental compliance is one of the sigifi
-
-
-% Whittle and other alternatives
+The development of the algorithm that will provide the full potential of mine project without compromising the environment is a sustainable attainment of economic growth.
 
 \subsubsection{Open Area Restriction}
-
+In Surface mining, the maximum area for the extraction of ore at any one time shall be dependent on the scale of the mining operation.
+For projects that have processing plants, the maximum disturbed area for extraction is one hundred sixty-two (162) hectares or two (2) meridional blocks (DAO 2018-19) \cite{DAO2018-19}.
+Temporary revegetation or progressive rehabilitation shall be implemented immediately on disturbed area exceeding the maximum disturbed area.
 
 \subsection{Auditability}
 
+Auditability of the source code is significant in order to determine how the algorithm handled the data and how it analysis it and ensure that it is not bias. 
+
 \section{Conceptual Framework of the Study}
+
+This study aims develop a life of mine optimizer for surface mines or LOMOPTIM for short..
+There will be 3 major milestones in the development cycle of the study as illustrated in Figure~\ref{fig:conceptual_framework}.
+
+\begin{figure}[p]
+    \centering
+    \includegraphics[clip, trim=30mm 2mm 2mm 33mm, width=\linewidth]{img/conceptual_framework.pdf}
+    \caption{Development cycle of LOMOPTIM.}
+    \label{fig:conceptual_framework}
+\end{figure}
+
+The first part is the system design phase which will include use case identification, algorithm design and source code writing.
+Once the design phase is done, the next stage will be the system testing phase wherein the functionality of LOMOPTIM is as expected and no bugs are present.
+Should bugs be identified, the algorithm and the source code will be modified.
+The final part of the study will be the evaluation phase wherein LOMOPTIM will be tested by the strategic mine planners and other technical experts.
 
 \section{Statement of the Problem}
 
@@ -283,23 +298,35 @@ The output of LOPTIM will then be compared with in GEOVIA Whittle by the partici
 \subsubsection{Use Case}
 
 The basic use case \cite{usecase} of LOMOPTIM is illustrated in Figure~\ref{fig:usecase}.
+The user will input both the block model file and various engineering parameters which will be enumerated further during the study.
+Some identified parameters are bench width, bench height, bench slope, extraction limit in wet metric tons, maximum open areas in hectares, and minimum extt tonnage
+After completion of inputs, the user can run the algorithm which will output the yearly pit shells and the yearly production details which should include tonnages and grades.
 
 \begin{figure}[p]
     \centering
-    \includegraphics[clip, trim=0 0 0 12mm, width=\linewidth]{img/usecase.pdf}
+    \includegraphics[clip, trim=15mm 0 0 12mm, width=\linewidth]{img/usecase.pdf}
     \caption{Initial use case of LOMOPTIM.}
     \label{fig:usecase}
 \end{figure}
 
 \subsubsection{File Structures}
 
-\subsubsection{Data Structures}
+The block model input will be composed of 3 comma-delimited files (CSV) which just contain ASCII texts.
+The first CSV file will be comprised by the collar data of the block model which will contain the 3D coordinates.
+The second CSV file will be comprised by the block model itself which will contain the chemical characteristics of block down each collar with its quantified extraction cost and revenue values.
+The extraction cost and revenue values will be prepared beforehand while each block may have different rock types at varying compenents.
+The last CSV file will contain the rock type or product type along with their corresponding bulk densities and moisture contents.
 
 \subsubsection{Algorithm}
 
+The algorithm to be used in LOMOPTIM will be a brute-force approach wherein each mining sequence will be explored if it conforms to the engineering constraint inputted by the user.
+All iteration will be predetermined using permutation included in the C++ standard library through parallel computation (threading).
+Each finished iteration which conforms to the engineering constraints and also results to the a higher net present value will be saved through mutual exclusion to prevent race conditions of each iteration.
+
+
 \subsection{Source Code Writing}
 
-\subsection{System Testing}
+The source code of LOMOPTIM will be solely written in C++ \cite{cpp} in the development environment called Qt Creator which is part of the Qt toolkit \cite{qt}.
 
 \section{Instruments}
 
