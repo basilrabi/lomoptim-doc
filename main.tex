@@ -40,7 +40,7 @@
 }
 
 
-\newcommand{\thetitle}{LOMOPTIM: An Implementation of Lerchs-Grossman Algorithm for Open Pit Mines with Sub-Optimal Conditions}
+\newcommand{\thetitle}{LOMOPTIM: An Optimization Algorithm for Open Pit Mines with Sub-Optimal Conditions}
 
 \usepackage[hidelinks]{hyperref}
 \hypersetup{
@@ -80,14 +80,16 @@
 \textbf{\MakeUppercase{\thetitle}}
 
 \vspace{1.5cm}
-A Research Concept Paper Presented to \\
-The College of Engineering \\
-St. Paul University Surigao
+A Thesis Proposal Presented to \\
+The Faculty of the College of Engineering \\
+St. Paul University Surigao \\
+Surigao City
 
 \vfill
 
-In Partial Fulfillment of the Requirements for the Course \\
-THESIS 1
+In Partial Fulfillment \\
+of the Requirements for the Degree \\
+BACHELOR OF SCIENCE IN MINING ENGINEERING
 
 \vspace{1cm}
 By:
@@ -126,17 +128,29 @@ November 2023
 
 \subsection{Mineral Reserves and Optimized Strategic Plans for Surface Mines}
 
+In surface minining, the maximum area for extraction of ore at any one time shall be dependent on the scall of the mining operation.
+For projects that have a processing plant or those with long term supply agreement with domestic processing plant, the maximum disturbed area for extraction shall not exceed to one hundred sixty-two (162) hectares or two (2) meridional block. (DAO 2018-19)
+Mine planning software that are utiized in scoping, feasibility, life-of-mine scheduling and in the ongoing re-evaluation of mine plans through production phase.
+Accurate evaluation of financial viability of the mineral deposit and development, then determination of the optimal long term strategic mine plan and schedule to extract the full value of that deposit over the life of the mine. 
+However, the Algorithm that analysis the conditions for scheduling includes strategic scheduling, detailed cost, price and recovery modelling, multiple scenario analysis, blending, cut-off and simultaneous stockpile optimization and failed to consider the open area for extraction of ore as mandate by existing guidelines. 
+Thus, full potential of mine project is not fully attained.
+Simultaneous mine production and mine rehabilitation is the major focus on the developement of this algorithm for attainment of the optimum life-of-mine.
+
 \subsubsection{Optimized Economics}
+Economic optimization enatails striving to acquire the best from economy in terms of profits, production, and utility.
+In entails maximinzing the objective functions which contribute towards the best economic outcome.
+
 
 \subsubsection{Good Governance and Environmental Compliance}
+Environmental resources is essential in economic advancement and the improvement of society's quality of life, and strong environmental governance in important in acheiving goals in sustainable way. 
+Mining assumes governance as key to the environment and, as a consequence, to the business.
+Simultaneous mining activity and enviromental compliance is one of the sigifi
 
-\subsection{Challenges of Using Presently Available Tools for Strategic Mine Planning}
 
 % Whittle and other alternatives
 
 \subsubsection{Open Area Restriction}
 
-\subsubsection{Minimum Throughput Requirements for Specific Products}
 
 \subsection{Auditability}
 
@@ -164,7 +178,7 @@ November 2023
         \end{enumerate}
 \end{enumerate}
 
-\section{Hypothesis}
+\section{hypothesis}
 
 \hypothesis{
 Does the researcher's system meet the technical expert's standards in terms of the system's efficiency and user's experience?
@@ -192,28 +206,90 @@ The researcher's system addresses the identified challenges and problems.
 
 \section{Significance of the Study}
 
+The objective of the study is to produce a working application which will determine an economically optimum yearly mining sequence from an arbitrary start up to the end of the mine life while prioritizing sub-optimal restrictions like a minimum annual product throughput and a maximum open area at the end of every year.
+This study will leverage the programming language C++\cite{cpp} along with the graphical toolkit Qt\cite{qt}.
+This study makes it possible to create a repeatable and auditable process in creating life-of-mine plans.
+
+This study is in-line with the goal of good governance of the mining industry through the prioritazation of legal compliance while also taking in consideration the optimum economics.
+The proposed system also hosts a feature that exports yearly pit shells in Standford Polygon format \cite{ply} which is viewable in most 3D viewers.
+
 \section{Scope and Limitation of the Study}
 
+The development of the application focuses only on the case of Taganito Mining Coporation (TMC) which has a partner plant using the High Pressure Acid Leach technology.
+This plant requires a consistent throughput of limonite ore while TMC's mine product is saprolite ore.
+Thus, this study will only account for two products for the mine optimization: limonite and saprolite.
+
+In addition, the programming side of the application will be done in Fedora Linux \cite{fedora} since the programming toolkits such as the C++ compilers, Qt libraries, and data processing tools such as Postgresql \cite{postgres} and PostGIS \cite{postgis} are readily available.
+
 \chapter{REVIEW OF RELATED LITERATURE}
+
+\section{Existing Tools and Algoritms}
+
+\subsection{Lerch-Grossman}
+
+The most common algoritm used in mine optimization is the algoritm described by Helmut Lerch and Ingo Grossman.
+This can be illustrated with each mine block with both downward force (cost) and upward force (revenue value).
+The objective of this algorithm is to maximize the total upward force without accounting for the mining sequence \cite{IMS}.
+
+\subsection{Pseudoflow}
+
+A variation of the Lerch-Grossman algorithm (LG) which adapted a network analysis of directed graphs and spanning trees is called the pseudoflow.
+Although there are also lots of variations of this algoritm, the best variants chosen in most literatures are lowest label and highest label methods \cite{pseudoflow}.
+
+\subsection{GEOVIA Whittle}
+
+GEOVIA Whittle is proprietary strategic mine planning tool which is commonly used in the Phillipines by various surface mines.
+This application implements the abovementioned algorithms in mine optimization, Lerch-Grossman and Pseudoflow, while maximizing the Net Present Value of the generated annual pit shells \cite{whittle}.
+
+\subsection{Limitations of GEOVIA Whittle and Its Algorithms}
+
+Although commonly used in the Phillipines, GEOVIA Whittle at present cannot conform to the recent developments of laws related to mining such as the DAO 2018-19 \cite{DAO2018-19} which limits the open area of all mines since GEOVIA Whittle focuses only on addressing engineering design constraints and economic optimization.
+In addition, GEOVIA Whittle is able to consider a minimum extraction limit but cannot set a minimum production limit for a specific product.
+In the present mineral prices, saprolite ore is more valuable than limonite ore so GEOVIA Whittle will prioritize saprolite ore in the annual production instead of the limonite ore.
+However, in the case of Taganito Mine where a minimum production of limonite ore is required to sustain a High Pressure Acid Leach plant, using GEOVIA Whittle will only a produce an unacceptable yearly production.
+
+\section{Development Tools}
+
+\subsection{C++}
+
+The programming language to be used in the development of LOMOPTIM will be C++.
+This a high level language which applies object-oriented programming for easier data abstraction.
+It also implements easier memory management through the use smart pointers and efficient use of multi-threaded machines through threading and mutual exclusions \cite{cpp}.
+
+\subsection{Qt}
+
+In the creation of the graphical user interface of LOMOPTIM, the C++ toolkit called Qt will be used.
+Qt is a graphical toolkit built for C++ which already contains a lot of libraries of graphical elements.
+Included in this toolkit is the graphical designer which will allow the reaserchers to design an interface without writing a single line of code \cite{qt}.
 
 \chapter{METHODS}
 
 \section{Research Design}
 
+This study aims to design and develop an application which will mainly comprise of systems designing and writing of software components.
+Thus, a multi-phase iterative design as discussed by Leedy and Ormrod will be applied.
+This research design is used commonly in design-based research wherein the researchers apply existing knowledge to create more effective systems \cite{MixedMethod}.
+
 \section{Participants}
 
+LOMOPTIM will be tested mostly by the mine planners in Taganito Mine and possibly other mine planners of other operating mines of Nickel Asia Corporation.
+The researchers will formulate a method of preparing the sample data input.
+The output of LOPTIM will then be compared with in GEOVIA Whittle by the participating mine planners.
+
 \section{Methodology}
-
-\subsection{Formulation of Requirements}
-
-The functionalities and the features of the data collection system will be identified first.
-As the research progresses, the functionalities will be illustrated as use-case diagrams which are analogous to the design requirements \cite{UseCase}.
-The formulation of requirements will depend upon the existing process and systems implemented by the host company.
-The formulation of requirements is a way to identify the gaps in the company's process' efficiency that can be addressed by researcher's propose system.
 
 \subsection{System Design}
 
 \subsubsection{Use Case}
+
+The basic use case \cite{usecase} of LOMOPTIM is illustrated in Figure~\ref{fig:usecase}.
+
+\begin{figure}[p]
+    \centering
+    \includegraphics[clip, trim=0 0 0 12mm, width=\linewidth]{img/usecase.pdf}
+    \caption{Initial use case of LOMOPTIM.}
+    \label{fig:usecase}
+\end{figure}
 
 \subsubsection{File Structures}
 
@@ -227,13 +303,11 @@ The formulation of requirements is a way to identify the gaps in the company's p
 
 \section{Instruments}
 
-On the software side of the development, free and open source tools will be used.
+During the development of LOMOPTIM, free and open source tools will be used as discussed in the review of related literature.
 
-A similar method of evaluation will be used based on the ER Mine Tracer research design.
-The researchers of the said study used survey to qualitatively evaluate ER Mine Tracer's functionality and efficiency.
-In this study, the researchers will also employ surveys to gather qualitative data on the users' experience and opinion regarding the researcher's data collection and processing system \cite{ERMineTracer}.
+In the method of qualitative evaluation, a similar method based on the ER Mine Tracer research design will be applied wherein the researchers of the said study used survey to qualitatively evaluate ER Mine Tracer's functionality and efficiency \cite{ERMineTracer}.
 
-Spreadsheet applications such Microsoft Excel or LibreOffice Calc will be used for data encoding and inspection while R version 4.3 \cite{R} will be used for data manipulation and analysis.
+In the preparation of data, data management tools such as PostreSQL \cite{postgres}, PostGIS \cite{postgis}, and R \cite{R} will be used.
 
 \section{Data Gathering Procedure}
 
@@ -243,30 +317,17 @@ The efficiency and effectiveness of LOMOPTIM will be evaluated in terms of compl
 
 \subsection{Qualitative Data}
 
-A Likert 4-point scales for "Agreement" parameter with 0.25 point increment will be basis of point system of the survey questionnaire.
-For each parameter, the verbal response and qualitative description provided by the system validators are used to generate the scale.
-Depending on the name of the performance exam, the first scale, or maximum, ranges from 3.25 to 4.00 with a parameter of 4 and a vocal response of "strongly agree".
-The second scale has a range of 2.5–3.25, a parameter of 3, an agree verbal response, and a qualitative description based on the name of the performance test.
-The third scale has a parameter of 2, a verbal response of "disagree," and a qualitative description based on the name of the performance test.
-Its range is 1.75-2.50.
-
-The final scale has a range of 1.00 to 1.75, a parameter of 1, a verbal response of "strongly disagree," and a qualitative description based on the topic of the performance test \cite{Likert}.
+Qualitative data will be collected through the use of questionnaires to the potential users, engineers, and technology experts if available.
+Each question will be have a corresponding point system similar to the Liker 4-point scale \cite{Likert}.
 
 \section{Data Analysis}
 
-Descriptive statistics will be computed using quantitative data coming from SAFER during its testing.
 The performance of LOMOPTIM will be compared to Whittle which is the existing system used by TMC.
 The researchers will be using R version 4.3 \cite{R} to analyze the quantitative data.
 
 Questionnaire surveys with qualitative information will be distributed to Strategic Mine Planners, IT Experts, Computer Engineers and other experts on this topic in order to collect data that are qualitative in nature.
 
 The result of the surveys and the collected quantitative data will be used by the researchers to determine if LOMOPTIM meets the user's requirements, meets the standard's of the technical experts, and does not have any technical limitations that might hinder its adoption.
-
-\section{Ethical Considerations}
-
-The data collected in this study shall be subject to the stipulations of the Republic Act 10173 or the Data Privacy Act of 2012.
-All the data gathering procedures shall be approved by the management of the host company, and shall be shared to them should they ask for it.
-Should there be instances where sensitive data may need to be included in publications, the company's approval shall be acquired beforehand.
 
 
 \titleformat{\chapter}[block]{\bfseries\centering}{}{0em}{#1}
@@ -285,7 +346,7 @@ Should there be instances where sensitive data may need to be included in public
 
 \begin{tabularx}{\linewidth}{@{}lXr}
     \MakeUppercase{\authora} && \multirow{3}{*}{\includegraphics[width=1in]{img/burdeos}} \\ %TODO: Picture
-    Insert address: Agusan del Norte && \\
+    Bonbon, Butuan City, Agusan del Norte && \\
     melba.dominque@gmail.com && \\
 \end{tabularx}
 
@@ -298,14 +359,14 @@ Should there be instances where sensitive data may need to be included in public
 
 \begin{tabular}{@{}l@{ : }l}
     DATE OF BIRTH & June 1, 1992 \\
-    PLACE OF BIRTH & TODO \\
+    PLACE OF BIRTH & Butuan City \\
     AGE & 31 \\
     GENDER & Female \\
     NATIONALITY & Filipino \\
-    RELIGION & TODO \\
+    RELIGION & Catholic \\
     CIVIL STATUS & Married \\
-    FATHER'S NAME & TODO \\
-    MOTHER'S NAME & TODO \\
+    FATHER'S NAME & Michael B. Burdeos \\
+    MOTHER'S NAME & Josephine A. Burdeos \\
 \end{tabular}
 
 \vspace{20pt}
@@ -318,10 +379,10 @@ Should there be instances where sensitive data may need to be included in public
 \begin{tabular}{@{}l@{ : }l}
     COLLEGE & Saint Paul University Surigao \\
     & Corner Rizal and San Nicolas Streets, Surigao City \\
-    HIGH SCHOOL & TODO: High school name \\
-    & TODO: High school address \\
-    ELEMENTARY & TODO: Elementary school name \\
-    & TODO: Elementary school address \\
+    HIGH SCHOOL & Agusan National High School\\
+    & A.D. Curato St., Butuan City \\
+    ELEMENTARY & La Trinidad Elementary School \\
+    & Bonbon, Butuan City \\
 \end{tabular}
 
 \end{spacing}
