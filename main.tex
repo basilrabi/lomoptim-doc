@@ -1,4 +1,5 @@
 \documentclass[12pt]{report}
+\usepackage[page,toc]{appendix}
 \usepackage[style=ieee]{biblatex}
 \addbibresource{references.bib}
 \usepackage{enumitem}
@@ -9,6 +10,7 @@
 \usepackage{fontspec}
 \usepackage[letterpaper,hmargin={47.5mm,17.5mm},top=64.0mm,bottom=25.4mm]{geometry}
 \usepackage{indentfirst}
+\usepackage{listings}
 \usepackage{microtype}
 \usepackage{multirow}
 \usepackage{setspace}
@@ -23,8 +25,10 @@
 \newcommand{\authorb}{
     Basil Eric Rabi %
 }
-\newcommand{\authorc}{
-    Herald Joy Dela Cruz %
+\newcommand{\codesnippet}[2]{
+\begin{scriptsize}
+\lstinputlisting[#1]{#2}
+\end{scriptsize}
 }
 \newcommand{\eg}{\emph{e.g.}}
 \newcommand{\hypothesis}[3]{
@@ -40,7 +44,7 @@
 }
 
 
-\newcommand{\thetitle}{LOMOPTIM: An Optimization Algorithm for Open Pit Mines with Sub-Optimal Conditions}
+\newcommand{\thetitle}{Development of a Multi-Dimensional Pit Optimization System for Strategic Planning in Surface Mines}
 
 \usepackage[hidelinks]{hyperref}
 \hypersetup{
@@ -48,7 +52,7 @@
     pdfinfo    = {
         Title    = {\thetitle},
         Subject  = {Mine Economics},
-        Author   = {\authora and \authorb and \authorc},
+        Author   = {\authora and \authorb},
         Keywords = {Optimization, Mining, Mine Economics, Strategic Mine Planning}
     }
 }
@@ -59,6 +63,7 @@
 \renewcommand{\headrulewidth}{0pt}
 \setmainfont[Mapping=tex-text-ms]{XITS}
 %\setmainfont[Mapping=tex-text-ms]{Times New Roman} % TODO: set up Times New Roman in github workflow
+\setmonofont{DejaVu Sans Mono}
 \setlength{\headheight}{15pt}
 \setlength{\parindent}{12.7mm}
 \setcounter{secnumdepth}{3}
@@ -135,9 +140,9 @@ Thus, full potential of mine project is not fully attained.
 Simultaneous mine production and mine rehabilitation is the major focus on the development of this algorithm for attainment of the optimum life-of-mine.
 
 \subsubsection{Optimized Economics}
+
 Economic optimization entails striving to acquire the best from economy in terms of profits, production, and utility.
 In entails maximizing the objective functions which contribute towards the best economic outcome.
-
 
 \subsubsection{Good Governance and Environmental Compliance}
 
@@ -174,18 +179,19 @@ The final part of the study will be the evaluation phase wherein LOMOPTIM will b
 \section{Statement of the Problem}
 
 \begin{enumerate}
+    \item What is the status of the current system for strategic mine planning in terms of
+        \begin{enumerate}
+            \item Processing time in achieving the highest net present value
+            \item Achieving the throughput requirement per product
+            \item Achieving the yearly slices which complies to the environmental requirements stipulated in DAO 2018-19
+        \end{enumerate}
     \item How is the system developed in relation to
             \begin{enumerate}
                 \item Software stack selection
                 \item Current tools used by the company
-                \item End-user's requirement and feedback
+                \item End-user's requirements
             \end{enumerate}
-    \item How efficient is the researcher's system terms of
-        \begin{enumerate}
-            \item Processing time in achieving the highest net present value
-            \item Achieving the throughput requirement per product
-            \item Achieving the yearly slices which complies to the environmental requirements
-        \end{enumerate}
+    \item How does the new system compare to the existing system for strategic mine planning?
     \item What is the evaluation of the system by the experts and users in terms of
         \begin{enumerate}
             \item Efficiency
@@ -193,40 +199,31 @@ The final part of the study will be the evaluation phase wherein LOMOPTIM will b
         \end{enumerate}
 \end{enumerate}
 
-\section{hypothesis}
-
-\hypothesis{
-Does the researcher's system meet the technical expert's standards in terms of the system's efficiency and user's experience?
-}{
-The researcher's system did not meet the technical expert's standards based on the identified factors.
-}{
-The researcher's system meets the technical expert's standards based on the identified factors.
-}
-
-\hypothesis{
-Are there any technical limitations that might hinder the system's adoption?
-}{
-There are technical limitations that might hinder the system's adoption.
-}{
-There are no technical limitations that might hinder the system's adoption.
-}
-
-\hypothesis{
-Does the researcher's system address the identified challenges and problems?
-}{
-The researcher's system does not address the identified challenges and problems.
-}{
-The researcher's system addresses the identified challenges and problems.
-}
-
 \section{Significance of the Study}
 
 The objective of the study is to produce a working application which will determine an economically optimum yearly mining sequence from an arbitrary start up to the end of the mine life while prioritizing sub-optimal restrictions like a minimum annual product throughput and a maximum open area at the end of every year.
-This study will leverage the programming language C++\cite{cpp} along with the graphical toolkit Qt\cite{qt}.
-This study makes it possible to create a repeatable and auditable process in creating life-of-mine plans.
 
-This study is in-line with the goal of good governance of the mining industry through the prioritazation of legal compliance while also taking in consideration the optimum economics.
-The proposed system also hosts a feature that exports yearly pit shells in Standford Polygon format \cite{ply} which is viewable in most 3D viewers.
+
+\subsection{Surface Mine Planners}
+
+This study makes it possible to create a repeatable and auditable process in creating life-of-mine plans.
+The development of a system for a Life of Mine optimizer for surface mines in which mine planners will participate and contribute for the inputs and determination of the optimal condition. 
+This study aims to provides a strategic mining sequence with confidence and a non-bias result that will suffice the needs and expectation for a mining project.
+
+\subsection{Mining Community}
+
+Implementation of optimal system in planning for surface mines will benefit the mining community as this will simplify the compliance on restriction for open areas for surface mine. 
+Maximizing the recovery while prioritizing the implementation of good governance and environmental compliance.
+Establishment of relationship between environmental stewardship and economic success for the success of a mining project.
+By minimizing the ecological footprint and enhancing operational efficiency, mining operations can achieve balance that not only benefits the environment but also ensure sustainable and economically viable practices over the long term.
+
+\subsection{The host Mining Community}
+
+This study is in-line with the goal of good governance of the mining industry through the prioritization of legal compliance while also taking in consideration the optimum economics.
+
+\subsection{Academe}
+
+Since the systematic approach of Life of mine optimization will readily available, it will be easier for Academe and other organizations to assess what mining engineering students needs to be taught in order to generate graduates who are qualified and equipped.
 
 \section{Scope and Limitation of the Study}
 
@@ -238,11 +235,32 @@ In addition, the programming side of the application will be done in Fedora Linu
 
 \chapter{REVIEW OF RELATED LITERATURE}
 
+\section{Surface Mining}
+
+The surface mining method is the most common method in mining due to its cost effectiveness but at the same time, it's visual and environmental impacts are the most conspicuous such as deforestation, dust generation, and surface run-offs.
+Thus, it is very imperative to minimize to open area in a surface mine in order to also keep the these impacts at its minimum.
+In this research, one dimension which will be considered during mine optimization is not exceeding the allowable open area at any given time in order to comply with DAO 2018-19 and minimize the environmental impacts.
+
+\section{Taganito Mine and the Laterite Profile}
+
+The mine project which will host this research is Taganito Mine located in Taganito, Claver, Surigao del Norte.
+Taganito Mine sits on top of a nickeliferous laterite deposit which produces two distinct products: limonite and saprolite.
+The nickeliferous laterite deposit is produced from the chemical weathring process of ultramafic rocks such as peridotite and dunites.
+In a mature laterite profile, the layers arranged in the following order from bottom-up: bedrock, saprolite zone, and limonite zone.
+The bedrock layer is comprised by serpentinized dunites and peridotites with some notable joints and fractures caused by uplifiting.
+The saprolite zone is where the most nickel is enriched through precipitation during partial dissolution of nickel during weathering.
+Due to the enrichment of nickel in the saprolite, saprolite ore with sufficient nickel content can be used as ore feed for ferronickel smelting plants.
+The most chemically altered portion in the laterite profile is the limonite zone.
+Most magnesium and silica are removed in the limonite zone due to weathering while the non-mobile elements such as iron, aluminum, chromium are retained as residue.
+Thus, the limonite zone is usually characterized by high iron and chromium content.
+Because of this, the ore from limonite can be used as ore feed for iron smelting plants and a source for chromite.
+In the case of Taganito Mine, the limonite is exclusively sold to a High Pressure Acid Leaching Plant as an ore feed for the production of Ni-Co mixed sulfide.
+
 \section{Existing Tools and Algoritms}
 
 \subsection{Lerch-Grossman}
 
-The most common algoritm used in mine optimization is the algoritm described by Helmut Lerch and Ingo Grossman.
+The most common algoritm used in mine optimization is the algorithm described by Helmut Lerch and Ingo Grossman.
 This can be illustrated with each mine block with both downward force (cost) and upward force (revenue value).
 The objective of this algorithm is to maximize the total upward force without accounting for the mining sequence \cite{IMS}.
 
@@ -282,10 +300,11 @@ Included in this toolkit is the graphical designer which will allow the reaserch
 \section{Research Design}
 
 This study aims to design and develop an application which will mainly comprise of systems designing and writing of software components.
-Thus, a multi-phase iterative design as discussed by Leedy and Ormrod will be applied.
+During the initial part of the research, the descriptive-developmental design will be applied in order to understand the existing system used in strategic mine planning and identify the gaps.
+During the next phase of the research which is the system design phase,, a multi-phase iterative approach as discussed by Leedy and Ormrod will be applied.
 This research design is used commonly in design-based research wherein the researchers apply existing knowledge to create more effective systems \cite{MixedMethod}.
 
-\section{Participants}
+\section{Respondents}
 
 LOMOPTIM will be tested mostly by the mine planners in Taganito Mine and possibly other mine planners of other operating mines of Nickel Asia Corporation.
 The researchers will formulate a method of preparing the sample data input.
@@ -356,12 +375,110 @@ Questionnaire surveys with qualitative information will be distributed to Strate
 
 The result of the surveys and the collected quantitative data will be used by the researchers to determine if LOMOPTIM meets the user's requirements, meets the standard's of the technical experts, and does not have any technical limitations that might hinder its adoption.
 
+\chapter{RESULTS AND DISCUSSION}
+
+Surface Mines has a lot of mandated laws and guidelines to follow that limits the full potential of current Mine Planning Software in generating Optimal Life of Mine plans.
+This leads to the development of an algorithm that would suffice the requirements to attain the most profitable and sustainable Mining Project. 
+General workflow of the algorithm is shown in Figure~\ref{fig:PFLomoptim}.
+
+\begin{figure}[p]
+    \centering
+    \includegraphics[width=4in,height=7in]{img/PFLomoptim.pdf}
+    \caption{High level flow of LOMOPTIM algorithm.}
+    \label{fig:PFLomoptim}
+\end{figure}
+
+\section{Input Data}
+
+To run the algorithm, the user must specify the data requirements: Block model and Engineering Parameters.
+The Block model is the collection of several mining area, each contains specific commodity content and corresponding revenue. 
+It also contain the geological characteristic of the mining project. In which the objective of the development of this algorithm is to determine the most profitable sequence of mining the area, considering the various predetermined parameters. By optimizing the revenue potential and specific constraints, the algorithm aims to maximize the profitability of the mining project. 
+This is designed for efficient resource allocation and enhance revenue generation, and improve the overall operational effectiveness in resource extraction.
+
+\section{Data Validation}
+
+The algorithm needs to verify that the input block model data contains the necessary attributes and the predefined parameters are within the acceptable ranges. 
+Otherwise, the algorithm prompts the user to rectify the error by entering a valid data.
+This is done to eliminate errors in generating the Optimal Mining Sequence.
+
+\section{Generation of Mining Sequence}
+
+Multiple Mining sequence is generated for the purpose of determining all the possible outcome of a mining project. 
+The algorithm continues to generate the sequence until it encounters the point where the sequence is no longer valid according to the predetermined parameters. 
+This iterative process will continue until all possible mining sequence has been considered.
+
+\section{Optimal Net Present Value}
+
+Each Mining Sequence generated in the algorithm has a corresponding production details such as the tonnages, commodities and revenues. 
+These details can be used to calculate the Net Present Value (NPV), a fundamental measure used in assessing the profitability of a Mining Project. 
+NPV computation involves discounting the expected future revenues of the mining sequence to their present value given to a certain discount rate. 
+This methods enables the comparison of revenues generated over the projects duration in present-day term. 
+NPV is computed by: 
+
+\begin{figure}[h]
+    \includegraphics[width=1.5in]{img/NPV}
+\end{figure}
+
+\begin{tabular}{@{}l@{ : }l}[h]
+ where\\
+  Rt & Net cash inflow/ revenue during a single period, t \\
+  i & Discount rate\\
+  T & Number of timer periods \\
+  \end{tabular}
+  
+\subsection{NPV Calculation for Individual Mining Area}
+
+Every resulting Mining Sequence is comprise with multiple number of Mining Area. 
+The calculation of NPV is based one the revenue by series of mining area. 
+
+\subsection{Discounting Cash Flows to Present Value}
+
+Once the expected revenue for each mining area are determine, the algorithm discounts these future revenue to their present value using the NPV method.
+The discounting process adjusts the value of future revenue to reflect their worth the the present day term, accounting for the value of money and the project’s specific discount rate.
+
+\subsection{Summation of NPV}
+
+After computing the NPV for each mining area within the mining sequence, the algorithm sumps up these NPVs to obtain the total NPV for the entire mining sequence.
+By summing up the NPVs across the mining areas, the algorithm evaluates the profitability of the mining sequence, considering the combined revenue potential.
+
+\section{Selection of the Optimal Mining Sequence}
+
+The summation of NPVs per Mining Sequence is noted and compared to the recorded NPV.
+The mining sequence with the highest total NPV represents the most profitable and sustainable life of mine plans among the options considered.
+The Optimal Mining Sequence will be extracted in form of production report and in yearly pit shell.
 
 \titleformat{\chapter}[block]{\bfseries\centering}{}{0em}{#1}
 \printbibliography[
     title = {REFERENCES},
     heading = bibintoc
 ]
+
+\begin{appendices}
+
+\chapter{SOURCE CODE}
+
+\section{\lstinline{blockmodel.cpp}}
+\codesnippet{language=C++,breaklines,showstringspaces=false}{sourcecode/blockmodel.cpp}
+
+\section{\lstinline{blockmodel.h}}
+\codesnippet{language=C++,breaklines,showstringspaces=false}{sourcecode/blockmodel.h}
+
+\section{\lstinline{boost.h}}
+\codesnippet{language=C++,breaklines,showstringspaces=false}{sourcecode/boost.h}
+
+\section{\lstinline{main.cpp}}
+\codesnippet{language=C++,breaklines,showstringspaces=false}{sourcecode/main.cpp}
+
+\section{\lstinline{mainwindow.cpp}}
+\codesnippet{language=C++,breaklines,showstringspaces=false}{sourcecode/mainwindow.cpp}
+
+\section{\lstinline{mainwindow.h}}
+\codesnippet{language=C++,breaklines,showstringspaces=false}{sourcecode/mainwindow.h}
+
+\section{\lstinline{mainwindow.ui}}
+\codesnippet{language=C++,breaklines,showstringspaces=false}{sourcecode/mainwindow.ui}
+
+\end{appendices}
 
 \newgeometry{hmargin={47.5mm,20mm},top=64.0mm,bottom=25.4mm}
 \setlength{\parindent}{0mm}
