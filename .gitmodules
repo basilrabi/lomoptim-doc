@@ -1,0 +1,3 @@
+[submodule "lomoptim-qt"]
+	path = lomoptim-qt
+	url = https://github.com/basilrabi/lomoptim-qt.git
