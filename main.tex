@@ -1,6 +1,7 @@
 \documentclass[12pt]{report}
+\usepackage{amsmath}
 \usepackage[page,toc]{appendix}
-\usepackage[style=ieee]{biblatex}
+\usepackage[style=ieee,backend=biber]{biblatex}
 \addbibresource{references.bib}
 \usepackage{enumitem}
 \setlist[enumerate]{nosep}
@@ -61,8 +62,11 @@
 \doublespacing
 \renewcommand{\contentsname}{TABLE OF CONTENTS}
 \renewcommand{\headrulewidth}{0pt}
-\setmainfont[Mapping=tex-text-ms]{XITS}
-%\setmainfont[Mapping=tex-text-ms]{Times New Roman} % TODO: set up Times New Roman in github workflow
+\IfFontExistsTF{Times New Roman}{
+    \setmainfont[Mapping=tex-text-ms]{Times New Roman}
+}{
+    \setmainfont[Mapping=tex-text-ms]{XITS}
+}
 \setmonofont{DejaVu Sans Mono}
 \setlength{\headheight}{15pt}
 \setlength{\parindent}{12.7mm}
@@ -134,8 +138,8 @@ November 2023
 \subsection{Mineral Reserves and Optimized Strategic Plans for Surface Mines}
 
 Mine planning software that are utilized in scoping, feasibility, life-of-mine scheduling and in the ongoing re-evaluation of mine plans through production phase.
-Accurate evaluation of financial viability of the mineral deposit and development, then determination of the optimal long term strategic mine plan and schedule to extract the full value of that deposit over the life of the mine. 
-However, the Algorithm that analysis the conditions for scheduling includes strategic scheduling, detailed cost, price and recovery modeling, multiple scenario analysis, blending, cut-off and simultaneous stockpile optimization and failed to consider the open area for extraction of ore as mandate by existing guidelines. 
+Accurate evaluation of financial viability of the mineral deposit and development, then determination of the optimal long term strategic mine plan and schedule to extract the full value of that deposit over the life of the mine.
+However, the Algorithm that analysis the conditions for scheduling includes strategic scheduling, detailed cost, price and recovery modeling, multiple scenario analysis, blending, cut-off and simultaneous stockpile optimization and failed to consider the open area for extraction of ore as mandate by existing guidelines.
 Thus, full potential of mine project is not fully attained.
 Simultaneous mine production and mine rehabilitation is the major focus on the development of this algorithm for attainment of the optimum life-of-mine.
 
@@ -146,7 +150,7 @@ In entails maximizing the objective functions which contribute towards the best 
 
 \subsubsection{Good Governance and Environmental Compliance}
 
-Environmental resources is essential in economic advancement and the improvement of society's quality of life, and strong environmental governance in important in achieving goals in sustainable way. 
+Environmental resources is essential in economic advancement and the improvement of society's quality of life, and strong environmental governance in important in achieving goals in sustainable way.
 Mining assumes governance as key to the environment and, as a consequence, to the business.
 The development of the algorithm that will provide the full potential of mine project without compromising the environment is a sustainable attainment of economic growth.
 
@@ -157,7 +161,7 @@ Temporary revegetation or progressive rehabilitation shall be implemented immedi
 
 \subsection{Auditability}
 
-Auditability of the source code is significant in order to determine how the algorithm handled the data and how it analysis it and ensure that it is not bias. 
+Auditability of the source code is significant in order to determine how the algorithm handled the data and how it analysis it and ensure that it is not bias.
 
 \section{Conceptual Framework of the Study}
 
@@ -207,12 +211,12 @@ The objective of the study is to produce a working application which will determ
 \subsection{Surface Mine Planners}
 
 This study makes it possible to create a repeatable and auditable process in creating life-of-mine plans.
-The development of a system for a Life of Mine optimizer for surface mines in which mine planners will participate and contribute for the inputs and determination of the optimal condition. 
+The development of a system for a Life of Mine optimizer for surface mines in which mine planners will participate and contribute for the inputs and determination of the optimal condition.
 This study aims to provides a strategic mining sequence with confidence and a non-bias result that will suffice the needs and expectation for a mining project.
 
 \subsection{Mining Community}
 
-Implementation of optimal system in planning for surface mines will benefit the mining community as this will simplify the compliance on restriction for open areas for surface mine. 
+Implementation of optimal system in planning for surface mines will benefit the mining community as this will simplify the compliance on restriction for open areas for surface mine.
 Maximizing the recovery while prioritizing the implementation of good governance and environmental compliance.
 Establishment of relationship between environmental stewardship and economic success for the success of a mining project.
 By minimizing the ecological footprint and enhancing operational efficiency, mining operations can achieve balance that not only benefits the environment but also ensure sustainable and economically viable practices over the long term.
@@ -388,7 +392,7 @@ The result of the surveys and the collected quantitative data will be used by th
 \chapter{RESULTS AND DISCUSSION}
 
 Surface Mines has a lot of mandated laws and guidelines to follow that limits the full potential of current Mine Planning Software in generating Optimal Life of Mine plans.
-This leads to the development of an algorithm that would suffice the requirements to attain the most profitable and sustainable Mining Project. 
+This leads to the development of an algorithm that would suffice the requirements to attain the most profitable and sustainable Mining Project.
 General workflow of the algorithm is shown in Figure~\ref{fig:PFLomoptim}.
 
 \begin{figure}[p]
@@ -401,45 +405,46 @@ General workflow of the algorithm is shown in Figure~\ref{fig:PFLomoptim}.
 \section{Input Data}
 
 To run the algorithm, the user must specify the data requirements: Block model and Engineering Parameters.
-The Block model is the collection of several mining area, each contains specific commodity content and corresponding revenue. 
-It also contain the geological characteristic of the mining project. In which the objective of the development of this algorithm is to determine the most profitable sequence of mining the area, considering the various predetermined parameters. By optimizing the revenue potential and specific constraints, the algorithm aims to maximize the profitability of the mining project. 
+The Block model is the collection of several mining area, each contains specific commodity content and corresponding revenue.
+It also contain the geological characteristic of the mining project. In which the objective of the development of this algorithm is to determine the most profitable sequence of mining the area, considering the various predetermined parameters. By optimizing the revenue potential and specific constraints, the algorithm aims to maximize the profitability of the mining project.
 This is designed for efficient resource allocation and enhance revenue generation, and improve the overall operational effectiveness in resource extraction.
 
 \section{Data Validation}
 
-The algorithm needs to verify that the input block model data contains the necessary attributes and the predefined parameters are within the acceptable ranges. 
+The algorithm needs to verify that the input block model data contains the necessary attributes and the predefined parameters are within the acceptable ranges.
 Otherwise, the algorithm prompts the user to rectify the error by entering a valid data.
 This is done to eliminate errors in generating the Optimal Mining Sequence.
 
 \section{Generation of Mining Sequence}
 
-Multiple Mining sequence is generated for the purpose of determining all the possible outcome of a mining project. 
-The algorithm continues to generate the sequence until it encounters the point where the sequence is no longer valid according to the predetermined parameters. 
+Multiple Mining sequence is generated for the purpose of determining all the possible outcome of a mining project.
+The algorithm continues to generate the sequence until it encounters the point where the sequence is no longer valid according to the predetermined parameters.
 This iterative process will continue until all possible mining sequence has been considered.
 
 \section{Optimal Net Present Value}
 
-Each Mining Sequence generated in the algorithm has a corresponding production details such as the tonnages, commodities and revenues. 
-These details can be used to calculate the Net Present Value (NPV), a fundamental measure used in assessing the profitability of a Mining Project. 
-NPV computation involves discounting the expected future revenues of the mining sequence to their present value given to a certain discount rate. 
-This methods enables the comparison of revenues generated over the projects duration in present-day term. 
-NPV is computed by: 
+Each Mining Sequence generated in the algorithm has a corresponding production details such as the tonnages, commodities and revenues.
+These details can be used to calculate the Net Present Value (NPV), a fundamental measure used in assessing the profitability of a Mining Project.
+NPV computation involves discounting the expected future revenues of the mining sequence to their present value given to a certain discount rate.
+This methods enables the comparison of revenues generated over the projects duration in present-day term.
+NPV is computed by:
 
-\begin{figure}[h]
-    \includegraphics[width=1.5in]{img/NPV}
-\end{figure}
+\begin{align}
+    NPV &= \sum_{t=0}^{n}\frac{Rt}{(1 + i)^{t}}
+\end{align}
 
-\begin{tabular}{@{}l@{ : }l}[h]
- where\\
-  Rt & Net cash inflow/ revenue during a single period, t \\
-  i & Discount rate\\
-  T & Number of timer periods \\
-  \end{tabular}
-  
+where:
+
+\begin{align}
+    Rt & = \text{Net cash inflow/revenue during a single period } t \\
+    i  & = \text{Discount rate per period}                          \\
+    n  & = \text{Number of time periods}
+\end{align}
+
 \subsection{NPV Calculation for Individual Mining Area}
 
-Every resulting Mining Sequence is comprise with multiple number of Mining Area. 
-The calculation of NPV is based one the revenue by series of mining area. 
+Every resulting Mining Sequence is comprise with multiple number of Mining Area.
+The calculation of NPV is based one the revenue by series of mining area.
 
 \subsection{Discounting Cash Flows to Present Value}
 
